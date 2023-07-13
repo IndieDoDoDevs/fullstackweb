@@ -1,20 +1,18 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { PrismaService } from 'src/datasource/prisma/prisma.service';
+import { AuthBodyDto } from './dto/auth.body.dto';
 
 @Injectable()
 export default class AuthModel {
   constructor(@Inject(PrismaService) private prisma: PrismaService) {}
-  public async checkUser({
-    username,
-    password,
-  }: {
-    username: string;
-    password: string;
-  }) {
-    return await this.prisma.user.findUnique({
+  public async checkUser({ username, password }: AuthBodyDto) {
+    return await this.prisma.user.findFirst({
       where: {
-        // TODO: @NiroshKumarR I wrote the schema for user table wrong, so I have to use email as username and cant use password
-        email: username,
+        username,
+        password,
+      },
+      select: {
+        id: true,
       },
     });
   }
