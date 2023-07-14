@@ -7,7 +7,7 @@ async function bootstrap() {
 
   // To Resove CROS Error im Enabling CROS in App
   app.enableCors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
   });
