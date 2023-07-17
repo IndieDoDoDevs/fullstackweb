@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./view/Login.tsx";
 import "./styles/index.css";
+import Dashboard from "./view/Dashboard.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <p>Dasboard {sessionStorage.getItem("userid")}</p>,
+    element: <Dashboard />,
   },
 ]);
 
