@@ -6,10 +6,10 @@ import { AuthBodyDto } from './dto/auth.body.dto';
 export class AuthController {
   constructor(@Inject(AuthService) private authService: AuthService) {}
 
-  @Post('register')
-  async register() {
-    return 'register';
-  }
+ /* @Post('register')
+  public async register(@Body() body: AuthBodyDto) {
+    return await this.authService.authUserReg(body);
+  }*/
 
   @Post('login')
   public async login(@Body() body: AuthBodyDto) {

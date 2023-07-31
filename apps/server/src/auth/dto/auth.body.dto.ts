@@ -6,4 +6,7 @@ export class AuthBodyDto {
 
   @IsString()
   readonly password: string;
+
+  /*@IsString()
+  readonly status: string;*/
 }

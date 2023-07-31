@@ -17,3 +17,17 @@ export default class AuthModel {
     });
   }
 }
+
+/*export default class AuthModel {
+  constructor(@Inject(PrismaService) private prisma: PrismaService) {}
+  public async checkUser({ username, password, status }: AuthBodyDto) {
+    return await this.prisma.user.create({
+      data: {
+        username,
+        password,
+        status,
+        createdAt: new Date(),
+      },
+    });
+  }
+}*/
