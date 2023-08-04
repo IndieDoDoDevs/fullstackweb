@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button, Container, Typography } from "@mui/material";
-
+import { TextField, Badge, Button, Container, Typography } from "@mui/material";
+import { KeyboardArrowRight } from "@mui/icons-material";
 
 
 function RegisterForm() {
@@ -57,13 +57,15 @@ function RegisterForm() {
 
   return (
     <Container
-    maxWidth="sm"
+    maxWidth = "sm"
+  
     style={{
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      minHeight: "100vh",
+      minHeight: "90vh",
+      
     }}
   >
     <div
@@ -71,7 +73,7 @@ function RegisterForm() {
         background: "#f1f1f1",
         padding: "10px",
         borderRadius: "5px",
-        marginBottom: "5px",
+        
       }}
     >
       <Typography variant="h4" align="center" color="primary" style={{ background: "#f1f1f1" }}>
@@ -81,6 +83,7 @@ function RegisterForm() {
 
     <form onSubmit={onSubmit} style={{ width: "75%" }}>
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+
       <TextField
         type="email"
         label="Email"
@@ -104,21 +107,25 @@ function RegisterForm() {
        
       />
       
-
-      <TextField
-        type="password"
-        label="Password"
-        
-        value={register.password}
-        onChange={(e) => inputHandler(e.currentTarget.value, "password")}
-        variant="outlined"
-        size ='small'
-        style={{
-           width: '80%',
-              
-      }}
-        margin="normal"
-      />
+      <div style={{ position: "relative", width: "80%" }}>
+            <TextField
+              type="password"
+              label="Password"
+              value={register.password}
+              onChange={(e) => inputHandler(e.currentTarget.value, "password")}
+              variant="outlined"
+              size="small"
+              style={{
+                width: "100%",
+              }}
+              margin="normal"
+            />
+            <Badge
+              badgeContent={register.password.length}
+              color="primary"
+              style={{ position: "absolute", top: 14, right: 4 }}
+            />
+          </div>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
@@ -127,7 +134,7 @@ function RegisterForm() {
           color="primary"
           size = "small"
           style={{
-            width: "50%", // Adjusted button width to 90%
+            width: "40%", // Adjusted button width to 90%
             transition: "background-color 0.3s, transform 0.3s",
           }}
           sx={{
@@ -136,10 +143,10 @@ function RegisterForm() {
               transform: "scale(1.05)",
             },
           }}
-          fullWidth
           type="submit"
+          endIcon={<KeyboardArrowRight/>}
         >
-          Sign In
+           &nbsp;Sign in
         </Button>
       </div>
     </form>

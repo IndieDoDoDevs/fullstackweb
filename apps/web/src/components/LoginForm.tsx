@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { FormEvent, useState } from "react";
-import { TextField, Button, Container, Typography } from "@mui/material";
+import { TextField, Button, Badge, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { KeyboardArrowRight } from "@mui/icons-material";
+
 
 function LoginForm() {
   const [login, setLogin] = useState({
@@ -57,7 +59,7 @@ function LoginForm() {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      minHeight: "100vh",
+      minHeight: "80vh",
     }}
   >
     <div
@@ -87,21 +89,27 @@ function LoginForm() {
        
       />
 
-      <TextField
-        type="password"
-        label="Password"
-        
-        value={login.password}
-        onChange={(e) => inputHandler(e.currentTarget.value, "password")}
-        variant="outlined"
-        size ='small'
-        style={{
-           width: '80%',
-              
-      }}
-        margin="normal"
-      />  
-      </div>
+<div style={{ position: "relative", width: "80%" }}>
+            <TextField
+              type="password"
+              label="Password"
+              value={login.password}
+              onChange={(e) => inputHandler(e.currentTarget.value, "password")}
+              variant="outlined"
+              size="small"
+              style={{
+                width: "100%",
+              }}
+              margin="normal"
+            />
+            <Badge
+              badgeContent={login.password.length}
+              color="primary"
+              style={{ position: "absolute", top: 14, right: 4 }}
+            />
+          </div>
+      </div>  
+      
 
       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
         <Button
@@ -109,7 +117,7 @@ function LoginForm() {
           color="primary"
           size = "small"
           style={{
-            width: "50%", // Adjusted button width to 90%
+            width: "40%", // Adjusted button width to 90%
             transition: "background-color 0.3s, transform 0.3s",
           }}
           sx={{
@@ -118,10 +126,10 @@ function LoginForm() {
               transform: "scale(1.05)",
             },
           }}
-          fullWidth
           type="submit"
+          endIcon={<KeyboardArrowRight/>}
         >
-          Log In
+           &nbsp;Sign in
         </Button>
       </div>
     </form>
