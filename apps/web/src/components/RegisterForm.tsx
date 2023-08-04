@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { FormEvent, useState } from "react";
-import { TextField, Button, Container, Typography } from "@mui/material";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TextField, Button, Container, Typography } from "@mui/material";
 
-function LoginForm() {
-  const [login, setLogin] = useState({
+
+
+function RegisterForm() {
+  const [register, setRegister] = useState({
+    email:"",
     username: "",
     password: "",
   });
@@ -12,40 +15,43 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const inputHandler = (value: string, name: string) => {
-    setLogin((prev) => ({ ...prev, [name]: value }));
+    setRegister((prev) => ({ ...prev, [name]: value }));
   };
 
   const clearForm = () => {
-    setLogin({
+    setRegister({
       password: "",
       username: "",
+      email: ""
     });
   };
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const authUser: {
+    const RegUser: {
       data: Record<string, any>;
       message: string;
     } = (
-      await axios.post("http://localhost:3000/auth/login", {
-        ...login,
+      await axios.post("http://localhost:3000/v1/register", {
+        ...register,
       })
     ).data;
 
-    console.log({ authUser });
+    console.log({ RegUser });
 
-    const { data, message } = authUser;
+    const { data, message } = RegUser;
 
-    if (data && data?.id) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      sessionStorage.setItem("userid", data.id);
+    console.log({ RegUser })
+
+    if (data && data?.id && message) {
+ // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      alert(message);
       clearForm();
-      navigate("/dashboard");
+      navigate("/login");
     } else {
-      alert("User not found");
+      alert("Creation Unscuccessful");
     }
   };
 
@@ -69,16 +75,27 @@ function LoginForm() {
       }}
     >
       <Typography variant="h4" align="center" color="primary" style={{ background: "#f1f1f1" }}>
-        Log In
+        Sign In
       </Typography>
     </div>
+
     <form onSubmit={onSubmit} style={{ width: "75%" }}>
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <TextField
+        type="email"
+        label="Email"
+        value={register.email}
+        onChange={(e) => inputHandler(e.currentTarget.value, "email")}
+        variant="outlined"
+        margin="normal"
+        size ='small'
+        style={{ width: '80%' }}
+      />
 
       <TextField
         type="text"
         label="Username"
-        value={login.username}
+        value={register.username}
         onChange={(e) => inputHandler(e.currentTarget.value, "username")}
         variant="outlined"
         style={{ width: '80%' }}
@@ -86,12 +103,13 @@ function LoginForm() {
         size ='small'
        
       />
+      
 
       <TextField
         type="password"
         label="Password"
         
-        value={login.password}
+        value={register.password}
         onChange={(e) => inputHandler(e.currentTarget.value, "password")}
         variant="outlined"
         size ='small'
@@ -100,7 +118,7 @@ function LoginForm() {
               
       }}
         margin="normal"
-      />  
+      />
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
@@ -121,13 +139,12 @@ function LoginForm() {
           fullWidth
           type="submit"
         >
-          Log In
+          Sign In
         </Button>
       </div>
     </form>
-    </Container>
-    
-  );
-}
+  </Container>
 
-export default LoginForm;
+);
+}
+export default RegisterForm;

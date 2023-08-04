@@ -16,11 +16,15 @@ export class AuthService {
         username: username,
         password: password,
       });
+      
+    console.log(auth.password);
+
       if (!auth) {
         return {
           message: 'No user Found, if error presist create a new user',
         };
       }
+      
 
       if (auth) {
         return {

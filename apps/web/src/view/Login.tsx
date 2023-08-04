@@ -5,7 +5,7 @@ type Props = {};
 
 const Login = (props: Props) => {
   return (
-    <div className="h-screen w-full flex items-center justify-center">
+    <div style={{ backgroundColor: "#f1f1f1" }}>
       <LoginForm />
     </div>
   );
