@@ -3,9 +3,28 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Badge, Button, Container, Typography } from "@mui/material";
 import { KeyboardArrowRight } from "@mui/icons-material";
+//import { makeStyles } from '@mui/material'
 
+//custom classes using makeStyles 
+ /*const useStyles : any = makeStyles({
+  btn : {
+    fontSize: 60,
+    backgroundColor: 'red',
+    '&:hover' : {
+      backgroundColor : 'blue'
+    }
+  },
+
+  title: {
+    textDecoration: 'underline',
+    marginBottom: 20
+  }
+
+ })*/
 
 function RegisterForm() {
+ //const classes = useStyles()
+
   const [register, setRegister] = useState({
     email:"",
     username: "",
@@ -67,7 +86,7 @@ function RegisterForm() {
       minHeight: "90vh",
       
     }}
-  >
+    >
     <div
       style={{
         background: "#f1f1f1",
@@ -76,7 +95,10 @@ function RegisterForm() {
         
       }}
     >
-      <Typography variant="h4" align="center" color="primary" style={{ background: "#f1f1f1" }}>
+      <Typography
+      // Implementing Custom classes
+      //className = {classes.title}
+      variant="h4" align="center" color="primary" style={{ background: "#f1f1f1" }}>
         Sign In
       </Typography>
     </div>

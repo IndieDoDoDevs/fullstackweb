@@ -41,7 +41,8 @@ function LoginForm() {
 
     const { data, message } = authUser;
 
-    if (data && data?.id) {
+    if (data && data?.id &&message) {
+      alert(message)
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       sessionStorage.setItem("userid", data.id);
       clearForm();
@@ -97,6 +98,7 @@ function LoginForm() {
               onChange={(e) => inputHandler(e.currentTarget.value, "password")}
               variant="outlined"
               size="small"
+              helperText = {!login.password ?'Required Password':" Do not share your password with anyone"}
               style={{
                 width: "100%",
               }}
